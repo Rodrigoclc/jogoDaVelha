@@ -53,7 +53,7 @@ function zerar() {
     for (let i = 0; i < quadros.length; i++) {
         quadros[i].textContent = '';
     }
-    jogador = 0;
+    jogador - 1;
 }
 
 for (let i = 0; i < quadros.length; i++) {
