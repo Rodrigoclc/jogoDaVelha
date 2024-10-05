@@ -1,23 +1,25 @@
-let jogador1 ={nome: '', pontuacao: 0};
-let jogador2 ={nome: '', pontuacao: 0};
+let jogador1 = { nome: '', pontuacao: 0 };
+let jogador2 = { nome: '', pontuacao: 0 };
 let velha = 0;
-function adicionarNomesJogadores(){
-    
-    jogador1.nome = prompt("Digite seu nome.", "Jogador1");
-    
-    if (jogador1 == null || jogador1 == "") {
-        alert("Seu nome será jogador1!");
-        jogador1 = "jogador1";
-    }
-    
-    jogador2.nome = prompt("Digete seu nome.", "Jogador2");
+let ultimoGanhador = 0;
 
-    if(jogador2 == null || jogador2 == "") {
-        alert("Seu nome será jogador2!");
-        jogador2 = "jogador2";
+async function darNome(id) {
+    const { value: nomeJogador } = await Swal.fire({
+        title: `Digite o nome do ${id}!`,
+        input: 'text',
+        inputPlaceholder: 'Digite seu nome'
+    });
+    document.querySelector(`#${id}`).innerHTML = nomeJogador;
+    if (id == 'jogador1') {
+        jogador1.nome = nomeJogador;
+    } else {
+        jogador2.nome = nomeJogador
     }
-    document.querySelector('#jogador1').innerHTML = jogador1.nome;
-    document.querySelector('#jogador2').innerHTML = jogador2.nome;
+}
+
+async function adicionarNomesJogadores() {
+    await darNome('jogador1');
+    await darNome('jogador2');
 }
 adicionarNomesJogadores()
 
@@ -53,38 +55,61 @@ function zerar() {
     for (let i = 0; i < quadros.length; i++) {
         quadros[i].textContent = '';
     }
-    jogador = 0;
+    if (ultimoGanhador == 0) {
+        jogador = 0;
+    } else if (ultimoGanhador == 1) {
+        jogador = 1;
+    }
 }
 
 for (let i = 0; i < quadros.length; i++) {
     quadros[i].addEventListener("click", () => {
-        //console.log(quadros[i].textContent == '')
         if (quadros[i].textContent === '') {
             quadros[i].textContent = jogador === 0 ? 'O' : 'X';
-            jogador = (jogador + 1) % 2; // Alterna entre 0 e 1
+            jogador = (jogador + 1) % 2;
 
             let camposPreenchidos = 0;
             for (let i = 0; i < quadros.length; i++) {
-                if(quadros[i].textContent !== '') {
+                if (quadros[i].textContent !== '') {
                     camposPreenchidos++;
-                    //console.log(camposPreenchidos);
                 }
-                if(camposPreenchidos == 9) {
-                    alert('terminou');
+                if (camposPreenchidos == 9) {
+                    Swal.fire({
+                        icon: "question",
+                        title: `Deu velha!`,
+                        showConfirmButton: false,
+                        timer: 5500
+                    });
                     velha++;
                     velhaP.innerHTML = velha;
+                    ultimoGanhador = (ultimoGanhador + 1) % 2;
                     zerar();
                 }
             }
 
             if (verificarVitoria(quadros)) {
-                alert(`Parabéns Jogador ${quadros[i].textContent} você ganhou!!`);
-                if(quadros[i].textContent == 'O') {
+
+                Swal.fire({
+                    title: `Parabéns ${quadros[i].textContent == 'O' ? jogador1.nome : jogador2.nome} você ganhou!!`,
+                    width: 600,
+                    padding: "3em",
+                    color: "#716add",
+                    background: "#fff url(./assets/backgroud-comemoracao.png)",
+                    backdrop: `
+                      rgba(0,0,123,0.4)
+                      url("./assets/nyan-cat.gif")
+                      left top
+                      no-repeat
+                    `
+                });
+                if (quadros[i].textContent == 'O') {
                     jogador1.pontuacao++;
                     pontuacaoJogador1.innerHTML = jogador1.pontuacao;
+                    ultimoGanhador = 0;
                 } else {
                     jogador2.pontuacao++;
                     pontuacaoJogador2.innerHTML = jogador2.pontuacao;
+                    ultimoGanhador = 1;
                 }
                 zerar();
             }
