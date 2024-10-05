@@ -9,7 +9,7 @@ async function darNome(id) {
         input: 'text',
         inputPlaceholder: 'Digite seu nome'
     });
-    document.querySelector(`#${id}`).innerHTML = nomeJogador;
+    document.querySelector(`#${id}`).innerHTML = nomeJogador.toUpperCase();
     if (id == 'jogador1') {
         jogador1.nome = nomeJogador;
     } else {
@@ -62,8 +62,15 @@ function zerar() {
     }
 }
 
+function vezDoJogador() {
+    const jogadorDaVez = document.querySelectorAll('.sua-vez');
+    jogadorDaVez[(jogador + 1) % 2].classList.add('jogador-da-vez');
+    jogadorDaVez[jogador].classList.remove('jogador-da-vez');
+}
+
 for (let i = 0; i < quadros.length; i++) {
     quadros[i].addEventListener("click", () => {
+        vezDoJogador();
         if (quadros[i].textContent === '') {
             quadros[i].textContent = jogador === 0 ? 'O' : 'X';
             jogador = (jogador + 1) % 2;
@@ -81,8 +88,9 @@ for (let i = 0; i < quadros.length; i++) {
                         timer: 5500
                     });
                     velha++;
-                    velhaP.innerHTML = velha;
+                    velhaP.innerHTML = velha.toString().padStart(2, '0');
                     ultimoGanhador = (ultimoGanhador + 1) % 2;
+                    vezDoJogador();
                     zerar();
                 }
             }
@@ -90,7 +98,7 @@ for (let i = 0; i < quadros.length; i++) {
             if (verificarVitoria(quadros)) {
 
                 Swal.fire({
-                    title: `Parabéns ${quadros[i].textContent == 'O' ? jogador1.nome : jogador2.nome} você ganhou!!`,
+                    title: `Parabéns ${quadros[i].textContent == 'O' ? jogador1.nome.toUpperCase() : jogador2.nome.toUpperCase()} você ganhou!!`,
                     width: 600,
                     padding: "3em",
                     color: "#716add",
@@ -98,19 +106,20 @@ for (let i = 0; i < quadros.length; i++) {
                     backdrop: `
                       rgba(0,0,123,0.4)
                       url("./assets/nyan-cat.gif")
-                      left top
+                      center top
                       no-repeat
                     `
                 });
                 if (quadros[i].textContent == 'O') {
                     jogador1.pontuacao++;
-                    pontuacaoJogador1.innerHTML = jogador1.pontuacao;
+                    pontuacaoJogador1.innerHTML = jogador1.pontuacao.toString().padStart(2, '0');
                     ultimoGanhador = 0;
                 } else {
                     jogador2.pontuacao++;
-                    pontuacaoJogador2.innerHTML = jogador2.pontuacao;
+                    pontuacaoJogador2.innerHTML = jogador2.pontuacao.toString().padStart(2, '0');
                     ultimoGanhador = 1;
                 }
+                vezDoJogador();
                 zerar();
             }
         }

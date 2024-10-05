@@ -30,9 +30,13 @@
     justify-content: center;
     width: 320px;
     margin: auto;
-    height: 150px;
+    height: 170px;
     border-radius: 5px;
-    background: linear-gradient(black, rgb(34, 32, 32));
+    background: linear-gradient(rgb(24, 24, 24), rgb(48, 44, 44));
+    box-shadow: -5px 5px 5px black;
+    padding-left: 5px;
+    padding-right: 5px;
+    margin-top: 50px;
 }
 
 .contador-placar {
@@ -45,11 +49,13 @@
 
 }
 
-.coluna1, .coluna2{
+.coluna1,
+.coluna2 {
     border-right: solid black;
 }
 
-.linha1, .linha2 {
+.linha1,
+.linha2 {
     border-bottom: solid black;
 }
 
@@ -60,7 +66,7 @@
     height: 25px;
     display: flex;
     justify-content: center;
-    align-items: center;    
+    align-items: center;
 }
 
 .nome-velha {
@@ -68,10 +74,10 @@
     background-color: black;
     border-radius: 30px;
     height: 20px;
-    width: 60px;
+    width: 70px;
     display: flex;
     justify-content: center;
-    align-items: center; 
+    align-items: center;
 }
 
 .placar-jogador {
@@ -88,4 +94,8 @@
     margin-top: 3px;
     height: 50px;
     background-color: black;
+}
+
+.jogador-da-vez {
+    background-color: yellow;
 }
