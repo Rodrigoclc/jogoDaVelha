@@ -10,38 +10,50 @@
     <link rel="stylesheet" href="style.css">
 </head>
 
-<body>
-    <div class="placar">
-        <div class="contador-placar" style="border-right: solid black;">
-            <p id="jogador1">jogador</p>
-            <p id="Pontuacao-jogador1" style="margin-top: 0;">0</p>
+<body style="background: linear-gradient(#87ceeb, #e0f6ff); width: 100vw; height: 100vh;">
+    <div class="placar" style="border: solid black;">
+        <div class="contador-placar">
+            <div class="nome-jogador">
+                <p id="jogador1" style="color: white;">jogador</p>
+            </div>
+            <div class="placar-jogador">
+                <p id="Pontuacao-jogador1" style="margin-top: 0; font-size: 60px; color: white;">00</p>
+            </div>
         </div>
-        <div class="contador-placar" style="border-right: solid black;">
-            <p>Velha</p>
-            <p id="velha" style="margin-top: 0;">0</p>
+        <div style="margin: auto;" class="contador-placar" >
+            <div style="margin: auto;" class="nome-velha">
+                <p style="color: white;">VELHA</p>
+            </div>
+            <di class="placar-velha">
+                <p id="velha" style="margin-top: 0; font-size: 30px; color: white;">00</p>
+            </di>
         </div>
         <div class="contador-placar">
-            <p id="jogador2">jogador</p>
-            <p style="margin-top: 0;" id="Pontuacao-jogador2">0</p>
+            <div class="nome-jogador">
+                <p id="jogador2" style="color: white;">jogador</p>
+            </div>
+            <div class="placar-jogador">
+                <p style="margin-top: 0;font-size: 60px; color: white;" id="Pontuacao-jogador2">00</p>
+            </div>
         </div>
     </div>
     <div class="container">
 
-        <div class="linhas">
+        <div class="linhas linha1">
+            <div class="quadros coluna1"></div>
+            <div class="quadros coluna2"></div>
             <div class="quadros"></div>
-            <div class="quadros"></div>
+        </div>
+
+        <div class="linhas linha2">
+            <div class="quadros coluna1"></div>
+            <div class="quadros coluna2"></div>
             <div class="quadros"></div>
         </div>
 
         <div class="linhas">
-            <div class="quadros"></div>
-            <div class="quadros"></div>
-            <div class="quadros"></div>
-        </div>
-
-        <div class="linhas">
-            <div class="quadros"></div>
-            <div class="quadros"></div>
+            <div class="quadros coluna1"></div>
+            <div class="quadros coluna2"></div>
             <div class="quadros"></div>
         </div>
 

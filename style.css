@@ -3,7 +3,7 @@
     flex-direction: column;
     width: 350px;
     height: 350px;
-    background-color: black;
+    /* background-color: black; */
     justify-content: center;
     align-items: center;
     margin: auto;
@@ -11,13 +11,13 @@
 
 .linhas {
     display: flex;
-    background-color: gray;
+    /* background-color: gray; */
 }
 
 .quadros {
     width: 100px;
     height: 100px;
-    border: solid black;
+    /* border: solid black; */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -30,15 +30,62 @@
     justify-content: center;
     width: 320px;
     margin: auto;
-    height: 100px;
+    height: 150px;
+    border-radius: 5px;
+    background: linear-gradient(black, rgb(34, 32, 32));
 }
 
 .contador-placar {
     width: 100px;
     justify-content: center;
     display: flex;
-    align-content: center;
+    align-content: space-around;
     flex-direction: column;
     text-align: center;
 
+}
+
+.coluna1, .coluna2{
+    border-right: solid black;
+}
+
+.linha1, .linha2 {
+    border-bottom: solid black;
+}
+
+.nome-jogador {
+    background-color: black;
+    border: solid gray 1px;
+    border-radius: 30px;
+    height: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;    
+}
+
+.nome-velha {
+    border: solid gray 1px;
+    background-color: black;
+    border-radius: 30px;
+    height: 20px;
+    width: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+}
+
+.placar-jogador {
+    border: solid gray 1px;
+    border-radius: 5px;
+    margin-top: 3px;
+    height: 90px;
+    background-color: black;
+}
+
+.placar-velha {
+    border: solid gray 1px;
+    border-radius: 5px;
+    margin-top: 3px;
+    height: 50px;
+    background-color: black;
 }
